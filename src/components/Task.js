@@ -2,7 +2,7 @@ import React from "react";
 import '../stylesheet/Task.css';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-function Task({text, completed }){
+function Task({text, completed, id, completarTarea, eliminarTarea }){
     return (
         <div className={completed ? 'task-container completed' : 'task-container'}>
             <div className="task-text">
