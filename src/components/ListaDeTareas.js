@@ -8,13 +8,27 @@ function ListaDeTareas(){
   const [tareas, setTareas] = useState([]);
 
   const agregarTarea = tarea => {
-    console.log(tarea);
     if (tarea.text.trim()){
       tarea.text =tarea.text.trim();
       const tareasActualizadas = [tarea, ...tareas]
       setTareas(tareasActualizadas);
     }
-  }
+  };
+
+  const eliminarTarea = id => {
+    const tareasActualizadas = tareas.filter(tarea => tarea.id !== id);
+    setTareas(tareasActualizadas);
+  };
+  
+  const completarTarea = id => {
+    const tareasActualizadas = tareas.map(tarea => {
+      if(tarea.id === id){
+        tarea.completed = !tarea.completed;
+      }
+      return tarea;
+    });
+    setTareas(tareasActualizadas);
+  };
 
   return (
     <>
@@ -27,6 +41,8 @@ function ListaDeTareas(){
             id={tarea.id}
             text={tarea.text}
             completed={tarea.completed}
+            eliminarTarea={eliminarTarea}
+            completarTarea={completarTarea}
           />
           )
         }
